@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   belongs_to :user
+   has_many :exercises, class_name: "Exercise", foreign_key: "course_id", dependent: :destroy
   has_rich_text :content
 
   extend FriendlyId
