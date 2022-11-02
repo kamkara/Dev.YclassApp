@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :exercises
   resources :courses
   get 'new-course', to:"courses#new"
   devise_for :users
