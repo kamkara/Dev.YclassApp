@@ -16,13 +16,10 @@
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+<%= f.submit "Sign up", class:"bg-blue-600 p-2 m-2 font-bold text-white" %>
+
   </div>
 <% end %>
 
