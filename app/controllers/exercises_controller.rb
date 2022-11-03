@@ -72,6 +72,8 @@ class ExercisesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exercise_params
-      params.require(:exercise).permit(:name, :slug, :user_id, :course_id)
+      params.require(:exercise).permit(:name, :slug, :user_id, :course_id, 
+        questions_attributes:[:_destroy,:id, :question_type, :name, :required,
+          answers_attributes: [:_destroy, :id, :name]])
     end
 end
