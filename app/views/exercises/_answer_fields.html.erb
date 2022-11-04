@@ -1,9 +1,14 @@
 <div class='nested-fields'>
-  <div class='form-group'>
+  <div class='form-group flex'>
     <%= form.hidden_field :_destroy %>
-    <%= form.text_field :name, placeholder: 'Answer', class: 'form-control' %>
+    <div class="flex">
+    <%#= form.radio_button %> <%= form.label :Correcte %>
+    
+    <%= form.text_field :name, placeholder: 'Réponse A', class: 'mx-4' %>
+    <%= form.text_field :name, placeholder: 'Réponse B', class: 'mx-4' %>
+    </div>
     <small>
-      <%= link_to "Remove Answer", "#", data: { action: "click->nested-form#remove_association" } %>
+      <%= link_to "Supprimé", "#", data: { action: "click->nested-form#remove_association" } %>
     </small>
   </div>
 </div>
