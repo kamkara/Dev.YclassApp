@@ -1,5 +1,5 @@
-<div class='nested-fields box' data-controller='dynamic-select'>
-  <div class='form-group'>
+<div class='nested-fields box px-2' data-controller='dynamic-select'>
+  <div class='form-group mb-2'>
     <%= form.select :question_type,
         options_for_select(Question.question_type_select, selected: form.object.question_type),
         {},
@@ -7,25 +7,20 @@
         'data-action': 'dynamic-select#selected' %>
   </div>
 
-  <div class='form-group'>
-    <%= form.check_box :required %>
-    <%= form.label :required %>
-  </div>
-
-  <div class='form-group'>
+  <div class='form-group '>
     <%= form.hidden_field :_destroy %>
-    <%= form.text_field :name, placeholder: 'Question', class: 'form-control' %>
+    <%= form.text_field :name, placeholder: 'Nouvelle Question', class:'w-full ' %>
     <small>
-      <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
+      <%= link_to "Supprimé", "#", data: { action: "click->nested-form#remove_association" },
+      class:"add-item-delete" %>
     </small>
   </div>
 
   <div data-controller="nested-form"
-       data-nested-form-index-value='ANSWER_RECORD'
-       data-dynamic-select-target='choice'>
+      data-nested-form-index-value='ANSWER_RECORD'
+      data-dynamic-select-target='choice'>
     <template data-nested-form-target='template'>
       <%= form.fields_for :answers, Answer.new, child_index: 'ANSWER_RECORD' do |answer| %>
-        ANSWER - ANSWER_RECORD
         <%= render 'answer_fields', form: answer %>
       <% end %>
     </template>
@@ -34,8 +29,9 @@
       <%= render 'answer_fields', form: answer %>
     <% end %>
 
-    <div data-nested-form-target="add_item">
-      <%= link_to "Add Answer", "#", data: { action: "nested-form#add_association" } %>
+    <div data-nested-form-target="add_item" class=" my-4">
+      <%= link_to "Réponse", "#", data: { action: "nested-form#add_association" },
+        class:"Add-item-exercise" %>
     </div>
   </div>
 

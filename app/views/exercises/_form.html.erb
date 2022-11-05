@@ -13,13 +13,13 @@
 
   <div class="my-5">
     <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :name, class: "block border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-<div data-controller="nested-form" data-nested-form-index-value='QUESTION_RECORD'>
+<div data-controller="nested-form" data-nested-form-index-value='QUESTION_RECORD'
+class="my-5  border py-4">
     <template data-nested-form-target='template'>
         <%= form.fields_for :questions, Question.new, child_index: 'QUESTION_RECORD' do |question| %>
-            QUESTION - QUESTION_RECORD
             <%= render 'question_fields', form: question %>
         <% end %>
     </template>
@@ -29,7 +29,8 @@
     <% end %>
 
     <div data-nested-form-target="add_item">
-        <%= link_to "Add Question", "#", data: { action: "nested-form#add_association" } %>
+        <%= link_to "Question", "#", data: { action: "nested-form#add_association" },
+        class:"Add-item-exercise" %>
     </div>
 </div>
 
