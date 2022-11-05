@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  
-  resources :courses, only:[:show] do
-    resources :exercises
-  end
-  resources :courses, except:[:show]
 
+  resources :courses, only:[:show] do
+    resources :exercises, only:[:new, :create, :destroy, :edit, :update]
+  end
+  
+  resources :exercises, except:[:show, :index] do
+    resources :results, only: [:new, :create]
+  end
+  
   get 'new-course', to:"courses#new"
+  resources :courses, except:[:show, :new]
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

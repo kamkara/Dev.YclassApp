@@ -1,0 +1,16 @@
+<div class="my-2">
+    <div class=" border m-2 p-2 font-bold text-xl"><%= exercise.name %></div>
+</div>
+
+<div class="border rounded-md mb-1">
+    <%= link_to(new_exercise_result_path(exercise), class: " text-black") do %>
+        <div class="bg-gray-100 p-2">
+            <h2 class="font-semibold"><%= exercise.name %></h2>
+        </div>
+        <div class="m-2 text-sm">
+            <p>
+                <%= exercise.questions.count %>
+                Questions</p>
+        </div>
+    <% end %>
+</div>

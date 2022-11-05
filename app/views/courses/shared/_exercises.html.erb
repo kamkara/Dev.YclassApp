@@ -1,11 +1,18 @@
 <% if @course.exercises.empty? %>
-    <div class="">Not Yet Exercise, Add your first Exercise  <%= link_to 'Add Exo', new_course_exercise_path(@course) , class:"ml-4 bg-blue-500 rounded-full px-2 " %> </div>
-<% else %>
-<% @course.exercises.each do |exercise| %>
-    <div class="my-2">
-        <div class=" border m-2 p-2 font-bold text-xl"><%= exercise.name %></div>
+    <div class="">
+        Not Yet Exercise, Add your first Exercise  
+        <%= link_to 'Add Exo', new_course_exercise_path(@course) ,
+        class:"ml-4 bg-blue-500 rounded-full px-2 " %> 
     </div>
-
-<% end %>
-
+<% else %>
+    <% @course.exercises.feed_exercise.each do |exercise| %>
+        <!-- Add Exercise -->
+        <% if exercise.completed_by(current_user) %>
+        <!-- Feed Exercise unlock correction -->
+            <%= render "courses/shared/completed_exercises", exercise: exercise %>
+        <% else %>
+        <!-- Feed New Exercise -->
+            <%= render "courses/shared/new_exercises", exercise:  exercise %>
+        <% end %>
+    <% end %>
 <% end %>
