@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   end
   
   resources :exercises, except:[:show, :index] do
-    resources :results, only: [:new, :create]
+    
   end
   
+
+
   get 'new-course', to:"courses#new"
   resources :courses, except:[:show, :new]
   devise_for :users

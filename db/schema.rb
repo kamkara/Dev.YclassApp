@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_05_144510) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_03_170418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -102,17 +102,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_144510) do
     t.index ["exercise_id"], name: "index_questions_on_exercise_id"
   end
 
-  create_table "results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.json "answer"
-    t.integer "grade"
-    t.uuid "user_id", null: false
-    t.uuid "exercise_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["exercise_id"], name: "index_results_on_exercise_id"
-    t.index ["user_id"], name: "index_results_on_user_id"
-  end
-
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -132,6 +121,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_144510) do
   add_foreign_key "exercises", "courses"
   add_foreign_key "exercises", "users"
   add_foreign_key "questions", "exercises"
-  add_foreign_key "results", "exercises"
-  add_foreign_key "results", "users"
 end
