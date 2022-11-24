@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-
+  
   resources :courses, only:[:show] do
     resources :exercises, only:[:new, :create, :destroy, :edit, :update]
   end
   
   resources :exercises, except:[:show, :index] do
+    resources :results, only:[:new, :create]
     
   end
+  resources :results, except:[:new, :create]
   
 
 

@@ -3,19 +3,23 @@ class Exercise < ApplicationRecord
   belongs_to :course
   has_many :questions, dependent: :destroy
   accepts_nested_attributes_for :questions, allow_destroy: true
-
+  has_many :results, dependent: :destroy
 
   ########## COMPLET EXERCISE ##############
 
   def completed_by(user)
-  #  results.any? {|result| result.user == user }
+    results.any? {|result| result.user == user }
   end
 
+  ########### user grade  #########
+  def user_grade(user)
+    results.where(user_id: user).first.grade()
+  end
   ############ Result ###################
   def build_result
-    #result = self.results.build()
-    #self.questions.each {|exercise| result.answered_questions.build(question: exercise)}
-    #return result
+    result = self.results.build()
+    self.questions.each {|exercise| result.answered_questions.build(question: exercise)}
+    return result
   end
 
   #############  Scopes ##############
